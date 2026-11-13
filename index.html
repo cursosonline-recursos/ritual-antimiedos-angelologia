@@ -1,0 +1,312 @@
+<title>Ritual Anti-Miedos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap">
+<style>
+[hidden]{display:none!important}
+/* Layout: una guía corta para la mamá (hoja de papel) y un modo ritual a pantalla de noche, un paso a la vez, con letra grande para leer en voz alta a la hora de dormir. */
+:root{
+  --cielo:#141a3e;
+  --cielo-2:#222a62;
+  --papel:#fbf3df;
+  --tinta:#2a2456;
+  --tinta-suave:#6a6297;
+  --oro:#f7c85c;
+  --oro-hondo:#c99325;
+  --lavanda:#e9e2ff;
+  --rosa:#ff8fa3;
+  --display:"Grandstander","Baloo 2","Comic Sans MS",system-ui,sans-serif;
+  --texto:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+html,body{background:var(--cielo);color:var(--papel)}
+body{
+  font-family:var(--texto);
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:18px 36px;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 18%,#fff8 50%,transparent 51%),
+    radial-gradient(1.5px 1.5px at 78% 9%,#fff7 50%,transparent 51%),
+    radial-gradient(2px 2px at 90% 42%,#ffe9a888 50%,transparent 51%),
+    radial-gradient(1.5px 1.5px at 6% 66%,#fff6 50%,transparent 51%),
+    radial-gradient(1200px 600px at 50% -10%,var(--cielo-2),var(--cielo));
+  background-attachment:fixed;
+}
+.envoltura{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.cabecera{display:flex;align-items:center;gap:10px}
+.marca b{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.04em;color:var(--oro);display:block;line-height:1.1}
+.marca span{font-size:12.5px;color:#c9c3e3;letter-spacing:.06em;text-transform:uppercase}
+.pestanas{display:flex;gap:8px;background:#ffffff12;border-radius:999px;padding:5px;align-self:flex-start;flex-wrap:wrap}
+.pestanas button{font:800 15px/1 var(--texto);color:var(--papel);background:none;border:none;border-radius:999px;padding:12px 18px;cursor:pointer}
+.pestanas button[aria-selected="true"]{background:var(--oro);color:var(--tinta)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--oro);outline-offset:3px}
+
+/* Guía */
+.hoja{background:var(--papel);color:var(--tinta);border-radius:22px;padding:clamp(20px,4vw,40px);box-shadow:0 18px 44px #0007;display:flex;flex-direction:column;gap:18px}
+.hoja h1{font:800 clamp(34px,6vw,52px)/1.02 var(--display);margin:0;text-wrap:balance}
+.hoja h1 em{font-style:normal;color:#d9902a}
+.hoja h2{font:800 clamp(22px,3.4vw,28px)/1.15 var(--display);margin:0;text-wrap:balance}
+.hoja p{margin:0;font-size:17px;line-height:1.6;font-weight:600;max-width:62ch;color:#3b3468}
+.folio{font:800 12px/1 var(--texto);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-suave)}
+.bloque{display:flex;flex-direction:column;gap:10px}
+.momentos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.momento{background:#fff;border:2px solid #ece2c8;border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.momento b{font:800 17px/1.2 var(--display)}
+.momento span{font-size:15px;line-height:1.45;font-weight:600;color:#4a4378}
+.frases{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.frase-col{border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.frase-col.si{background:#e3f5ee}
+.frase-col.no{background:#fbe3e3}
+.frase-col h3{margin:0;font:800 15px/1 var(--texto);letter-spacing:.08em;text-transform:uppercase}
+.frase-col.si h3{color:#1f7a5c}.frase-col.no h3{color:#a33a3a}
+.frase-col ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.frase-col li{font-size:16px;line-height:1.45;font-weight:700}
+.pasos-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:p}
+.pasos-lista li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;counter-increment:p}
+.pasos-lista li::before{content:counter(p);width:36px;height:36px;border-radius:50%;background:var(--oro);color:var(--tinta);font:800 17px/36px var(--display);text-align:center}
+.pasos-lista b{font:800 17px/1.3 var(--display);display:block}
+.pasos-lista span{font-size:15.5px;line-height:1.5;font-weight:600;color:#4a4378}
+.aviso{background:var(--lavanda);border-radius:16px;padding:14px 18px;font-size:15.5px;line-height:1.55;font-weight:600}
+.aviso b{font-family:var(--display);font-size:16px}
+.boton{font:800 18px/1 var(--display);color:var(--tinta);background:var(--oro);border:none;border-radius:16px;padding:16px 24px;cursor:pointer;box-shadow:0 5px 0 var(--oro-hondo);display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.boton:active{transform:translateY(3px);box-shadow:0 2px 0 var(--oro-hondo)}
+.boton.suave{background:#ffffff1c;color:var(--papel);box-shadow:none;border:2px solid #ffffff33}
+
+/* Ritual */
+.ritual{position:relative;border-radius:28px;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#2b3478,#10153a 70%);border:3px solid #f7c85c44;box-shadow:0 20px 50px #0008;min-height:560px;display:flex;flex-direction:column}
+.ritual.apagado{background:radial-gradient(120% 90% at 50% 0%,#151a44,#05071a 70%)}
+.barra{display:flex;gap:6px;padding:16px 18px 0}
+.barra i{flex:1;height:6px;border-radius:3px;background:#ffffff22;transition:.4s}
+.barra i.ya{background:var(--oro)}
+.paso{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:22px clamp(18px,5vw,48px) 26px}
+.paso .num{font:800 13px/1 var(--texto);letter-spacing:.18em;text-transform:uppercase;color:#c9c3e3}
+.paso h2{font:800 clamp(30px,5.5vw,46px)/1.05 var(--display);margin:0;color:var(--oro);text-wrap:balance}
+.leer{margin:0;font:700 clamp(19px,2.9vw,24px)/1.5 var(--display);max-width:30ch;color:#fff}
+.nota{margin:0;font-size:14.5px;line-height:1.5;font-weight:700;color:#c9c3e3;max-width:46ch;background:#ffffff10;border-radius:12px;padding:10px 14px}
+.nota b{color:var(--oro)}
+.ritual-pie{display:flex;justify-content:space-between;gap:10px;padding:0 18px 18px}
+.ritual-pie .boton{min-width:140px}
+.icono-grande{width:min(180px,46vw);height:auto;max-width:100%}
+
+.respira{position:relative;width:min(220px,56vw);aspect-ratio:1;display:grid;place-items:center;max-width:100%}
+.respira .bola{position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle,#fff6cf,#f7c85c 60%,#f7c85c00 72%);transform:scale(.55);transition:transform 4s ease-in-out}
+.respira.inhala .bola{transform:scale(1.15)}
+.respira span{position:relative;font:800 22px/1.2 var(--display);color:var(--tinta)}
+.contador{font:800 16px/1 var(--texto);color:#c9c3e3;letter-spacing:.06em}
+
+.miedo-zona{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:420px}
+.miedo-zona input{font:700 20px/1.2 var(--display);color:var(--tinta);background:var(--papel);border:none;border-radius:14px;padding:12px 14px;width:100%;box-sizing:border-box;text-align:center}
+.miedo-txt{font:800 clamp(24px,4.4vw,32px)/1.2 var(--display);min-height:1.2em;transition:transform 1.5s ease,opacity 1.5s ease}
+.miedo-txt.achica{transform:scale(.1) translateY(-260px);opacity:0}
+.chispa{position:absolute;pointer-events:none;animation:vuela 1.7s ease-out forwards}
+@keyframes vuela{to{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+.pluma{position:absolute;top:-60px;width:20px;pointer-events:none;animation:cae linear forwards}
+@keyframes cae{to{transform:translateY(700px) rotate(var(--r));opacity:.2}}
+.capa-plumas{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+
+.alas{width:min(260px,70vw);height:auto;max-width:100%}
+.alas .ala{opacity:0;transition:opacity 1s, transform 1s;transform-box:fill-box}
+.alas .ala.izq{transform:translateX(30px) scale(.6);transform-origin:right center}
+.alas .ala.der{transform:translateX(-30px) scale(.6);transform-origin:left center}
+.alas.abiertas .ala{opacity:1;transform:none}
+.alas .cor{transform-box:fill-box;transform-origin:center}
+.alas.abiertas .cor{animation:late 1.4s ease-in-out infinite}
+@keyframes late{50%{transform:scale(1.15)}}
+
+.verso{margin:0;font:700 clamp(20px,3vw,25px)/1.55 var(--display);color:#fff;background:#ffffff10;border:2px solid #f7c85c55;border-radius:22px;padding:18px 22px}
+.verso small{display:block;font:800 12px/1 var(--texto);letter-spacing:.16em;text-transform:uppercase;color:var(--oro);margin-bottom:10px}
+.dos-versos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;width:100%;max-width:640px}
+
+.luna-fin{width:120px;height:120px;max-width:100%}
+.luna-fin .ojos{opacity:1}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<div class="envoltura">
+  <header class="cabecera marca">
+    <svg width="34" height="34" viewBox="-40 -48 80 90" aria-hidden="true"><ellipse cx="0" cy="-40" rx="11" ry="3.5" fill="none" stroke="#f7c85c" stroke-width="3"/><path d="M-8,-2 C-40,-30 -62,-8 -54,14 C-44,30 -22,22 -8,10Z" fill="#fff"/><path d="M8,-2 C40,-30 62,-8 54,14 C44,30 22,22 8,10Z" fill="#fff"/><path d="M-16,0 Q0,-8 16,0 L24,40 Q0,50 -24,40Z" fill="#fff8e8"/><circle cy="-18" r="15" fill="#ffe2c8"/><path d="M-15,-20 Q-14,-36 0,-35 Q14,-36 15,-20 Q10,-28 2,-27 Q-6,-30 -15,-20Z" fill="#f2b84b"/></svg>
+    <div><b>Mi Angelito Guardián</b><span>Ritual anti-miedos nocturnos</span></div>
+  </header>
+
+  <div class="pestanas" role="tablist">
+    <button role="tab" id="tabGuia" aria-selected="true" aria-controls="guia">Guía para mamá</button>
+    <button role="tab" id="tabRitual" aria-selected="false" aria-controls="ritual">Hacer el ritual</button>
+  </div>
+
+  <!-- ===== Guía ===== -->
+  <section class="hoja" id="guia" role="tabpanel" aria-labelledby="tabGuia">
+    <div class="bloque">
+      <div class="folio">Antes de empezar</div>
+      <h1>Un ritual para dormir <em>sin miedo</em></h1>
+      <p>El miedo a la oscuridad es normal en los niños: es parte de cómo crece su imaginación. No hay que quitárselo de un tirón, hay que acompañarlo. Este ritual dura unos cinco minutos y usa lo mismo que tu hijo ya conoce del cuento: las palabras secretas <b>dulce compañía</b> y el gesto de <b>abrazar sus alas</b>.</p>
+    </div>
+
+    <div class="bloque">
+      <h2>¿Cuándo hacerlo?</h2>
+      <div class="momentos">
+        <div class="momento"><b>Todas las noches</b><span>Como parte de la rutina, después de lavarse los dientes. Repetirlo le da seguridad.</span></div>
+        <div class="momento"><b>Después de una pesadilla</b><span>Solo los pasos 4 y 5, bajito y con la luz tenue.</span></div>
+        <div class="momento"><b>Antes de algo nuevo</b><span>La primera noche en otra casa, un viaje o el día antes de entrar al colegio.</span></div>
+      </div>
+    </div>
+
+    <div class="bloque">
+      <h2>Cómo hablarle de su miedo</h2>
+      <p>Lo más importante no es convencerlo de que no hay nada, sino que sienta que no está solo.</p>
+      <div class="frases">
+        <div class="frase-col si"><h3>Mejor decir</h3><ul><li>"Entiendo que te dé miedo. Aquí estoy."</li><li>"¿Cómo es ese miedo? ¿De qué color es?"</li><li>"Vamos a hacerlo chiquitico juntos."</li><li>"Tu ángel está aquí, y yo también."</li></ul></div>
+        <div class="frase-col no"><h3>Mejor evitar</h3><ul><li>"No seas bobo, eso no da miedo."</li><li>"Ya estás muy grande para eso."</li><li>"Si no te duermes viene el coco."</li><li>Revisar el clóset con cara de susto.</li></ul></div>
+      </div>
+    </div>
+
+    <div class="bloque">
+      <h2>Los 7 pasos del ritual</h2>
+      <ol class="pasos-lista">
+        <li><div><b>Buenas noches a la luz</b><span>Apagan juntos la luz grande y dejan una lucecita suave si la necesita.</span></div></li>
+        <li><div><b>Huele la flor, sopla la pluma</b><span>Tres respiraciones lentas para que el cuerpo se calme.</span></div></li>
+        <li><div><b>El miedo se hace chiquitico</b><span>Le pone nombre a su miedo, lo aprieta entre las manos como una bolita y lo sopla por la ventana.</span></div></li>
+        <li><div><b>Las palabras secretas</b><span>Dicen juntos, bajito: dulce compañía.</span></div></li>
+        <li><div><b>Abrazar las alas</b><span>Cruza los brazos sobre el pecho y siente el calorcito del corazón.</span></div></li>
+        <li><div><b>Los versos del ángel</b><span>El versito del ritual y la oración del Ángel de mi guarda.</span></div></li>
+        <li><div><b>Un beso y a dormir</b><span>Le recuerdas que su ángel se queda cuidando sus sueños.</span></div></li>
+      </ol>
+    </div>
+
+    <div class="aviso"><b>Un consejo con cariño.</b> Si el miedo es tan fuerte que tu hijo no logra dormir durante varias semanas, tiene pesadillas casi todas las noches o el miedo empieza a afectar su día, vale la pena hablarlo con su pediatra o con un psicólogo infantil. El ritual acompaña, pero no reemplaza esa ayuda.</div>
+
+    <div><button class="boton" type="button" id="irRitual">Empezar el ritual</button></div>
+  </section>
+
+  <!-- ===== Ritual ===== -->
+  <section class="ritual" id="ritual" role="tabpanel" aria-labelledby="tabRitual" hidden>
+    <div class="barra" id="barra"></div>
+    <div class="paso" id="paso"></div>
+    <div class="capa-plumas" id="plumas"></div>
+    <div class="ritual-pie">
+      <button class="boton suave" type="button" id="atras">Atrás</button>
+      <button class="boton" type="button" id="sigue">Siguiente</button>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const ESTRELLA='<svg width="16" height="16" viewBox="-12 -12 24 24" aria-hidden="true"><path d="M0,-11 L3,-3.5 L11,-3.4 L4.8,2 L7,10.5 L0,5.6 L-7,10.5 L-4.8,2 L-11,-3.4 L-3,-3.5Z" fill="#ffe17a"/></svg>';
+  function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+  /* sonido */
+  let ac=null;
+  function sonar(n){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();const t=ac.currentTime+.02;
+    n.forEach(([f,d,dur])=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0,t+d);g.gain.linearRampToValueAtTime(.1,t+d+.03);g.gain.exponentialRampToValueAtTime(.0005,t+d+dur);o.connect(g).connect(ac.destination);o.start(t+d);o.stop(t+d+dur+.05);});}catch(e){}}
+  const MAGIA=[[784,0,.5],[988,.09,.5],[1175,.18,.5],[1568,.27,.8]];
+  const CANCION=[[523,0,.6],[659,.5,.6],[784,1,.6],[659,1.5,.6],[587,2,.6],[523,2.5,.7],[392,3.1,.7],[523,3.7,1.4]];
+
+  /* pestañas */
+  function pestana(cual){
+    const r=cual==='ritual';
+    $('guia').hidden=r; $('ritual').hidden=!r;
+    $('tabGuia').setAttribute('aria-selected',!r); $('tabRitual').setAttribute('aria-selected',r);
+    if(r){i=0;pintar();}
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  $('tabGuia').onclick=()=>pestana('guia');
+  $('tabRitual').onclick=()=>pestana('ritual');
+  $('irRitual').onclick=()=>pestana('ritual');
+
+  /* pasos */
+  const PASOS=[
+    {t:'Buenas noches a la luz', leer:'Ya es de noche. Vamos a decirle buenas noches a la luz grande. Una, dos y tres… ¡buenas noches, luz!',
+     nota:'<b>Mamá:</b> apaguen juntos la luz del cuarto. Si tu hijo la necesita, dejen una lucecita suave.', arte:'lampara', apaga:true},
+    {t:'Huele la flor, sopla la pluma', leer:'Vamos a respirar despacito. Huele una flor muy rica… y ahora sopla una pluma suavecito.',
+     nota:'<b>Mamá:</b> toca la bolita de luz y respiren al ritmo: cuando crece, inhalan; cuando se achica, soplan. Son tres veces.', tipo:'respira'},
+    {t:'El miedo se hace chiquitico', leer:'¿A qué le tienes miedo esta noche? Dímelo bajito. Ahora apriétalo entre tus manos como una bolita… y sóplalo por la ventana.',
+     nota:'<b>Mamá:</b> escribe aquí el miedo con sus palabras y toquen el botón juntos.', tipo:'miedo'},
+    {t:'Las palabras secretas', leer:'Ahora llamamos a tu ángel con las palabras secretas. Las decimos juntos, bajito: dulce compañía.',
+     nota:'<b>Mamá:</b> díganlas en voz baja al mismo tiempo que tocan el botón.', tipo:'palabras'},
+    {t:'Abraza tus alas', leer:'Cruza tus brazos sobre el pecho, así, como si te abrazaras con dos alas de luz. ¿Sientes el calorcito en tu corazón? Ese es tu ángel.',
+     nota:'<b>Mamá:</b> crucen los brazos al tiempo y quédense así tres respiraciones.', tipo:'alas'},
+    {t:'Los versos del ángel', leer:'', tipo:'versos'},
+    {t:'Un beso y a dormir', leer:'Tu ángel ya está aquí y se va a quedar toda la noche cuidando tus sueños. Te quiero mucho. Buenas noches.',
+     nota:'<b>Mamá:</b> un beso en la frente y a dormir. Si se despierta con miedo, repitan los pasos 4 y 5.', tipo:'fin'}
+  ];
+  let i=0, timers=[];
+  const barra=$('barra'); PASOS.forEach(()=>barra.appendChild(document.createElement('i')));
+  function limpiarTimers(){timers.forEach(clearTimeout);timers=[];}
+
+  const ARTE={
+    lampara:'<svg class="icono-grande" viewBox="0 0 200 200" aria-hidden="true"><circle class="glow" cx="100" cy="80" r="80" fill="#f7c85c" opacity=".25"/><path d="M60 92 L140 92 L124 44 L76 44Z" fill="#f7c85c"/><rect x="96" y="92" width="8" height="60" fill="#d8c7f0"/><ellipse cx="100" cy="156" rx="34" ry="9" fill="#9b8bc4"/></svg>',
+    luna:'<svg class="luna-fin" viewBox="-60 -60 120 120" aria-hidden="true"><circle r="50" fill="#fff1b3" opacity=".2"/><circle r="38" fill="#fff1b3"/><circle cx="-14" cy="16" r="5" fill="#efdc94"/><circle cx="16" cy="-14" r="4" fill="#efdc94"/><g fill="none" stroke="#5a4a2a" stroke-width="3" stroke-linecap="round"><path d="M-17 -3 q6 6 12 0"/><path d="M5 -3 q6 6 12 0"/><path d="M-7 12 q7 6 14 0"/></g></svg>'
+  };
+
+  function pintar(){
+    limpiarTimers();
+    const p=PASOS[i];
+    [...barra.children].forEach((b,j)=>b.classList.toggle('ya',j<=i));
+    $('ritual').classList.toggle('apagado',i>0);
+    $('atras').style.visibility=i===0?'hidden':'visible';
+    $('sigue').textContent=i===PASOS.length-1?'Volver a empezar':'Siguiente';
+    let h=`<div class="num">Paso ${i+1} de ${PASOS.length}</div><h2>${p.t}</h2>`;
+    if(p.arte) h+=ARTE[p.arte];
+    if(p.tipo==='respira') h+=`<button class="respira" id="bola" type="button" aria-label="Empezar a respirar" style="border:none;background:none;cursor:pointer"><div class="bola"></div><span id="bolaTxt">Toca para empezar</span></button><div class="contador" id="cuenta">0 de 3 respiraciones</div>`;
+    if(p.tipo==='miedo') h+=`<div class="miedo-zona" id="zonaMiedo"><input id="inMiedo" maxlength="50" placeholder="Por ejemplo: los monstruos" autocomplete="off" aria-label="El miedo de esta noche"><div class="miedo-txt" id="miedoTxt"></div><button class="boton" type="button" id="btnSopla">Soplar el miedo</button><div id="msgMiedo"></div></div>`;
+    if(p.tipo==='palabras') h+=`<button class="boton" type="button" id="btnDulce" style="font-size:clamp(26px,5vw,38px);padding:18px 28px">¡Dulce compañía!</button>`;
+    if(p.tipo==='alas') h+=`<button type="button" id="btnAlas" style="border:none;background:none;cursor:pointer;padding:0" aria-label="Abrazar las alas"><svg class="alas" id="alasSvg" viewBox="0 0 260 180" aria-hidden="true">
+        <path class="ala izq" d="M118 80 C70 20 10 40 14 100 C18 150 70 160 110 120Z" fill="#fff4c4"/>
+        <path class="ala der" d="M142 80 C190 20 250 40 246 100 C242 150 190 160 150 120Z" fill="#fff4c4"/>
+        <circle cx="130" cy="96" r="44" fill="#ff8fa3" opacity=".18"/>
+        <path class="cor" d="M130 124 C104 106 98 88 108 80 C116 74 126 78 130 88 C134 78 144 74 152 80 C162 88 156 106 130 124Z" fill="#ff8fa3"/>
+      </svg></button><div class="contador" id="msgAlas">Toquen el corazón cuando crucen los brazos</div>`;
+    if(p.tipo==='versos') h+=`<div class="dos-versos">
+        <p class="verso"><small>Versito del ritual</small>Ángel de luz, quédate aquí,<br>cuida mi cama, cuida de mí.<br>Si llega el miedo, lo hago chiquito,<br>y con tus alas duermo bonito.</p>
+        <p class="verso"><small>Oración</small>Ángel de mi guarda,<br>mi dulce compañía,<br>no me desampares<br>ni de noche ni de día,<br>hasta que me pongas en paz y alegría<br>con todos los santos,<br>Jesús, José y María.<br>Amén.</p></div>
+        <p class="nota"><b>Mamá:</b> léanlos juntos despacio. Con los días, tu hijo se los va a aprender solito.</p>`;
+    if(p.tipo==='fin') h+=ARTE.luna;
+    if(p.leer) h+=`<p class="leer">${p.leer}</p>`;
+    if(p.nota) h+=`<p class="nota">${p.nota}</p>`;
+    $('paso').innerHTML=h;
+    if(p.tipo==='respira') montarRespira();
+    if(p.tipo==='miedo') montarMiedo();
+    if(p.tipo==='palabras') $('btnDulce').onclick=()=>{sonar(MAGIA);plumas();};
+    if(p.tipo==='alas') $('btnAlas').onclick=()=>{$('alasSvg').classList.add('abiertas');sonar([[523,0,.7],[659,.2,.7],[784,.4,1]]);$('msgAlas').textContent='Respiren tres veces así, con las alas abrazadas';};
+    if(p.tipo==='fin') timers.push(setTimeout(()=>sonar(CANCION),400));
+  }
+
+  function montarRespira(){
+    const b=$('bola'), txt=$('bolaTxt'), cnt=$('cuenta'); let corriendo=false;
+    b.onclick=()=>{
+      if(corriendo) return; corriendo=true; let n=0;
+      const ciclo=()=>{
+        if(n>=3){txt.textContent='¡Muy bien!';b.classList.remove('inhala');corriendo=false;sonar([[784,0,.4],[1047,.15,.6]]);return;}
+        b.classList.add('inhala'); txt.textContent='Huele la flor…'; sonar([[392,0,.8]]);
+        timers.push(setTimeout(()=>{b.classList.remove('inhala');txt.textContent='Sopla la pluma…';},4000));
+        timers.push(setTimeout(()=>{n++;cnt.textContent=n+' de 3 respiraciones';ciclo();},8200));
+      };
+      ciclo();
+    };
+  }
+  function montarMiedo(){
+    const inp=$('inMiedo'), t=$('miedoTxt'), z=$('zonaMiedo'), msg=$('msgMiedo');
+    inp.oninput=()=>{t.classList.remove('achica');t.textContent=inp.value;msg.innerHTML='';};
+    $('btnSopla').onclick=()=>{
+      const v=inp.value.trim();
+      if(!v){msg.innerHTML='<p class="nota">Primero escriban el miedo con las palabras de tu hijo.</p>';inp.focus();return;}
+      t.textContent=v; void t.offsetWidth; t.classList.add('achica'); sonar(MAGIA);
+      const r=z.getBoundingClientRect();
+      for(let k=0;k<16;k++){const s=document.createElement('div');s.className='chispa';s.innerHTML=ESTRELLA;s.style.left=(r.width/2-8)+'px';s.style.top='70px';
+        s.style.setProperty('--dx',(Math.random()*r.width-r.width/2)+'px');s.style.setProperty('--dy',(Math.random()*-140-20)+'px');z.appendChild(s);setTimeout(()=>s.remove(),1800);}
+      timers.push(setTimeout(()=>{msg.innerHTML=`<p class="nota">Listo: "${esc(v)}" ya es una estrellita chiquitica allá lejos.</p>`;inp.value='';},1400));
+    };
+  }
+  function plumas(){
+    const cap=$('plumas');
+    for(let k=0;k<20;k++){const d=document.createElement('div');d.className='pluma';d.style.left=(Math.random()*95)+'%';d.style.setProperty('--r',(Math.random()*540-270)+'deg');d.style.animationDuration=(2.4+Math.random()*2)+'s';d.style.animationDelay=(Math.random()*.8)+'s';
+      d.innerHTML='<svg viewBox="0 0 24 48" width="20" height="40"><path d="M12 2 C22 12 20 34 12 46 C4 34 2 12 12 2Z" fill="#fff"/><path d="M12 7 V46" stroke="#d9cdf7" stroke-width="1.5"/></svg>';cap.appendChild(d);setTimeout(()=>d.remove(),5300);}
+  }
+  $('sigue').onclick=()=>{i=i===PASOS.length-1?0:i+1;pintar();sonar([[1047,0,.2]]);};
+  $('atras').onclick=()=>{if(i>0){i--;pintar();}};
+})();
+</script>
